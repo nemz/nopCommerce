@@ -13,7 +13,12 @@
                         <nop-label asp-for="ApplicationId" />
                     </div>
                     <div class="col-md-9">
-                        <nop-editor asp-for="ApplicationId" />
+                        <div class="input-group input-group-required">
+                            <nop-editor asp-for="ApplicationId" />
+                            <div class="input-group-btn">
+                                <nop-required/>
+                            </div>
+                        </div>
                         <span asp-validation-for="ApplicationId"></span>
                     </div>
                 </div>
@@ -22,7 +27,12 @@
                         <nop-label asp-for="ApplicationSecret" />
                     </div>
                     <div class="col-md-9">
-                        <nop-editor asp-for="ApplicationSecret" />
+                        <div class="input-group input-group-required">
+                            <nop-editor asp-for="ApplicationSecret" />
+                            <div class="input-group-btn">
+                                <nop-required/>
+                            </div>
+                        </div>
                         <span asp-validation-for="ApplicationSecret"></span>
                     </div>
                 </div>
@@ -33,7 +43,12 @@
                             <nop-label asp-for="LocationId" />
                         </div>
                         <div class="col-md-9">
-                            <nop-select asp-for="LocationId" asp-items="Model.Locations" />
+                            <div class="input-group input-group-required">
+                                <nop-select asp-for="LocationId" asp-items="Model.Locations" />
+                                <div class="input-group-btn">
+                                    <nop-required/>
+                                </div>
+                            </div>                            
                             <span asp-validation-for="LocationId"></span>
                         </div>
                     </div>
@@ -45,7 +60,12 @@
                     <div class="col-md-9">
                         @if (!Model.IsConfigured)
                         {
-                            <nop-editor asp-for="AccessToken" />
+                            <div class="input-group input-group-required">
+                                <nop-editor asp-for="AccessToken" />
+                                <div class="input-group-btn">
+                                    <nop-required />
+                                </div>
+                            </div>                            
                         }
                         else
                         {

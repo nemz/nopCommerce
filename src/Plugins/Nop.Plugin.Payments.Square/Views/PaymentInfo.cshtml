@@ -48,6 +48,8 @@
         var errorsExist = false;
         var onePageCheckout = @orderSettings.OnePageCheckoutEnabled.ToString().ToLower();
         $('.payment-info-next-step-button').attr('onclick', null);
+        $('.payment-info-next-step-button').prop('disabled', true);
+        $('.payment-info-next-step-button').css("opacity", .3);
 
         $.getScript('https://js.squareup.com/v2/paymentform', function (data, textStatus, jqxhr) {
             var paymentForm = new SqPaymentForm({
@@ -80,8 +82,8 @@
                                 var currentErrorvalue = $('#@Html.IdFor(model => model.Errors)').val();
                                 $('#@Html.IdFor(model => model.Errors)').val(currentErrorvalue + '|' + error.message);
                                 errorsExist = true;
-                                paymentForm.destroy();
                             });
+                            paymentForm.destroy();
                         }
                         else {
                             $('#@Html.IdFor(model => model.CardNonce)').val(nonce);
@@ -98,6 +100,8 @@
                     paymentFormLoaded: function () {
                         //setting the postal code field programmatically
                         paymentForm.setPostalCode('@Model.PostalCode');
+                        $('.payment-info-next-step-button').prop('disabled', false);
+                        $('.payment-info-next-step-button').css("opacity", 1);
                     }
                 }
             });
